@@ -18,6 +18,7 @@ const cnt = document.querySelector('.container ul');
 
 const clear = document.querySelector('.clearAll');
 const itemFilter = document.querySelector('.filter');
+
 function addItem() {
   if (itemInput.value.trim() === '') {
     alert('Please fill in the input with an item');
@@ -37,28 +38,73 @@ function addItem() {
   clear.addEventListener('click', clearAll);
 }
 
+document.addEventListener('DOMContentLoaded', loadItems);
+addBtn.addEventListener('click', addItem);
+itemFilter.addEventListener('input', filterItems);
+clear.addEventListener('click', clearAll);
+
+function loadItems() {
+  const items = JSON.parse(localStorage.getItem('items')) || [];
+  items.forEach((item) => addItemToUI(item));
+}
+
 function createButton() {
   const button = document.createElement('button');
   button.className = 'removeBtn';
   button.textContent = 'x';
   return button;
 }
+
+function addItem() {
+  const itemValue = itemInput.value.trim();
+  if (itemValue === '') {
+    alert('Please fill in the input with an item');
+    return;
+  }
+  addItemToUI(itemValue);
+  saveItemToLocalStorage(itemValue);
+  itemInput.value = '';
+  checkUI();
+}
+
+function addItemToUI(itemValue) {
+  const li = document.createElement('li');
+  const button = createButton();
+  li.textContent = itemValue;
+  li.appendChild(button);
+  cnt.appendChild(li);
+  button.addEventListener('click', remove);
+}
+
+function saveItemToLocalStorage(itemValue) {
+  const items = JSON.parse(localStorage.getItem('items')) || [];
+  items.push(itemValue);
+  localStorage.setItem('items', JSON.stringify(items));
+}
+
 function remove(e) {
   if (e.target.classList.contains('removeBtn')) {
     if (confirm('Are you sure?')) {
+      const itemToRemove = e.target.parentElement.textContent.slice(0, -1); // Remove 'x' from text
       e.target.parentElement.remove();
+      removeItemFromLocalStorage(itemToRemove);
     }
   }
 }
 
 function clearAll() {
-  if (cnt) {
-    while (cnt.firstChild) {
-      cnt.removeChild(cnt.firstChild);
-    }
-  } else {
-    console.error('The container element is null or not found.');
+  while (cnt.firstChild) {
+    cnt.removeChild(cnt.firstChild);
   }
+  localStorage.clear();
+  checkUI();
+}
+
+function removeItemFromLocalStorage(itemValue) {
+  const items = JSON.parse(localStorage.getItem('items'));
+  const filteredItems = items.filter((item) => item !== itemValue);
+  localStorage.setItem('items', JSON.stringify(filteredItems));
+  checkUI();
 }
 
 function checkUI() {
