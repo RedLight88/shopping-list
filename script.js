@@ -28,12 +28,21 @@ function addItem() {
   li.appendChild(button);
   cnt.appendChild(li);
   itemInput.value = '';
+
+  button.addEventListener('click', remove);
 }
 
 function createButton() {
   const button = document.createElement('button');
+  button.className = 'removeBtn';
   button.textContent = 'x';
   return button;
+}
+
+function remove(e) {
+  if (e.target.classList.contains('removeBtn')) {
+    e.target.parentElement.remove();
+  }
 }
 
 addBtn.addEventListener('click', addItem);
