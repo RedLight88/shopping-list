@@ -30,7 +30,7 @@ function addItem() {
   itemInput.value = '';
 }
 
-function createButton(classes) {
+function createButton() {
   const button = document.createElement('button');
   button.textContent = 'x';
   return button;
