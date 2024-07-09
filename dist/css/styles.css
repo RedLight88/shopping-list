@@ -1,0 +1,55 @@
+body {
+  background-color: white;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.heading h1 {
+  color: black;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+}
+.hero .title {
+  display: flex;
+}
+.hero .title img {
+  max-width: 4em;
+  max-height: 4em;
+}
+.hero .container {
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  width: 25em;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.hero .container .filter {
+  margin-top: 0.5rem;
+}
+.hero .container ul {
+  margin: 0;
+  border: 0;
+  list-style-type: none;
+  padding-left: 0;
+}
+.hero .container ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3em;
+  padding: 0.5em;
+}
+.hero .container ul li button {
+  border-radius: 1rem;
+  max-height: 1.5rem;
+}
+.hero .container .input input {
+  width: 50%;
+}/*# sourceMappingURL=styles.css.map */
