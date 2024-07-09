@@ -51,6 +51,18 @@ body {
   border-radius: 1rem;
   max-height: 1.5rem;
 }
+.hero .container .clearAll {
+  width: 25rem;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+.hero .container .input button {
+  cursor: pointer;
+}
 .hero .container .input input {
   width: 50%;
 }/*# sourceMappingURL=styles.css.map */

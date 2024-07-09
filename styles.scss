@@ -56,7 +56,20 @@ body {
         }
       }
     }
+    .clearAll {
+      width: 25rem;
+      background-color: transparent;
+      border: none;
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+      margin-top: 2rem;
+    }
+
     .input {
+      button {
+        cursor: pointer;
+      }
       input {
         width: 50%;
       }
